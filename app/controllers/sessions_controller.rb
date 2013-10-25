@@ -1,13 +1,12 @@
 class SessionsController < ApplicationController
-def new
+  def new
   end
 
   def create
    user = User.find_by(email: params[:session][:email].downcase)
   if user && user.authenticate(params[:session][:password])
-    # Sign the user in and redirect to the user's show page.
-    sign_in user
-    redirect_to user
+      sign_in user
+      redirect_back_or user
     
   else
     # Create an error message and re-render the signin form.
@@ -16,7 +15,27 @@ def new
       render 'new'
   end
   end
+   def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # Handle a successful update.
+       flash[:success] = "Profile updated"
+       redirect_to @user
+    else
+      render 'edit'
+    end
+  end
 
   def destroy
   end
+  private
+
+    def user_params
+      params.require(:user).permit(:name, :email, :password,
+                                   :password_confirmation)
+    end
 end
