@@ -1,5 +1,5 @@
 # Ruby on Rails Tutorial: sample application
 
-This is the sample application for testing eb dfsd  df fgd
+This is the sample application for testng eb dfsd  df fgd
 the [*Ruby on Rails Tutorial*](http://railstutorial.org/)
 by [Michael Hartl](http://michaelhartl.com/).
